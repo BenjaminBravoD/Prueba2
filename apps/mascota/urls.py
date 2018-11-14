@@ -1,10 +1,11 @@
 from django.urls import path
 from . import views
-
+from apps.mascota.views import MascotaList, MascotaCreate, MascotaUpdate, MascotaDelete
 urlpatterns = [
     path('', views.index, name='index'),
-    path('nuevo', views.mascota_view, name='mascota_crear'),
-    path('listar', views.mascota_list, name='mascota listar'),
-    path('editar/<int:id_mascota>/', views.mascota_edit, name='mascota_editar')
+    path('nuevo',MascotaCreate.as_view(), name='mascota_crear'),
+    path('listar',MascotaList.as_view(), name='mascota listar'),
+    path('editar/<pk>/', MascotaUpdate.as_view(), name='mascota_editar'),
+    path('eliminar/<pk>/', MascotaDelete.as_view(), name='mascota_eliminar')
 
 ]

@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 
+
 class Persona(models.Model):
     nombre=models.CharField(max_length=50)
     apellidos=models.CharField(max_length=70)
@@ -10,5 +11,12 @@ class Persona(models.Model):
     email=models.EmailField()
     domicilio=models.TextField()
 
+
     def __str__(self):
-        return '{}'.format(self.nombre)
+        return '{}'.format(self.nombre, self.apellidos)
+
+
+class solicitud(models.Model):
+    persona = models.ForeignKey(Persona, null=True, blank=True, on_delete=models.CASCADE)
+    numero_mascota = models.IntegerField()
+    razones = models.TextField()
